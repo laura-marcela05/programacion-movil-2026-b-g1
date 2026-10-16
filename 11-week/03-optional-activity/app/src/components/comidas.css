@@ -1,0 +1,34 @@
+/* Lista de comidas */
+.fila-comida {
+  --min-height: 3.5rem; /* 56px: cómodo de tocar */
+}
+
+.fila-comida ion-label .comida-nombre,
+.comida-nombre {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.fila-comida ion-label .comida-fecha,
+.comida-fecha {
+  font-size: 1rem;
+}
+
+/* Etiqueta de la franja: color + palabra escrita */
+.franja-badge {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+}
+
+/* Formulario */
+.formulario-comida ion-select,
+.formulario-comida ion-input {
+  min-height: 3.5rem;
+  font-size: 1.1rem;
+}
+
+.formulario-comida ion-button {
+  margin-top: 1.25rem;
+  min-height: 3.5rem;
+}

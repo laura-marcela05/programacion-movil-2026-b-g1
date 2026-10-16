@@ -1,0 +1,21 @@
+.resumen-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.resumen-numero {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.resumen-etiqueta {
+  font-size: 1.1rem;
+}
+
+.resumen-fila {
+  --min-height: 3.5rem;
+  font-size: 1.1rem;
+}

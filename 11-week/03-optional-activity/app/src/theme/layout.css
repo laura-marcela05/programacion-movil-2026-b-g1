@@ -1,0 +1,8 @@
+/* Diseño responsivo: en teléfono la columna ocupa todo el ancho;
+   en tablet o computador se queda centrada con un ancho máximo legible,
+   en vez de estirar filas y campos de lado a lado. */
+.contenedor {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
