@@ -11,7 +11,7 @@ interface Props {
 }
 
 const day = (iso: string) => new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' });
-const hour = (iso: string) => new Date(iso).toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit' });
+export const hour = (iso: string) => new Date(iso).toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit' });
 const sessionLabel = (s: Session) => `${day(s.checkInAt)}, de ${hour(s.checkInAt)} a ${hour(s.checkOutAt)}, ${s.durationMinutes} minutos. Músculos: ${s.muscleGroups.map((m) => MUSCLE_LABELS[m]).join(', ')}`;
 
 export function HistoryList({ status, sessions, studentId, onRetry }: Props) {
