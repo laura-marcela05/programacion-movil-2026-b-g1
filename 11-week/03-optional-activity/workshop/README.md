@@ -9,7 +9,7 @@ Taller individual de Programación Móvil 2026-B, Corte 3. Aplico los temas de l
 - TEAM: Health Track
 - DOCS_REPO: https://github.com/code-corhuila/healt-track-docs
 - CODE_REPO: https://github.com/code-corhuila/h-tracker
-- BASELINE: starter programacion-movil-2026-b-starter-react, commit <hash>
+- BASELINE: starter programacion-movil-2026-b-starter-react, importado en este fork en el commit ba7214a
 - REFLECTION_DOC: https://docs.google.com/document/d/1lrPC0ee1Zxwj8J0sJheTHCunN1wGNFyLt9Gg7lCOf2A/edit?usp=sharing
 
 - MY_SCREENS: AttendanceHistory (lista), AttendanceForm (formulario)
@@ -33,7 +33,9 @@ Para ver cada estado de la lista agrego un parámetro a la URL: `?sim=slow` (car
 
 ## Entregables
 
-| Checkpoint               | Archivo                    |
-| :----------------------- | :------------------------- |
-| CP1: auditoría UX        | `docs/01-ux-audit.md`      |
-| CP2: navegación y tokens | `docs/02-design-tokens.md` |
+| Checkpoint                      | Archivo                      |
+| :------------------------------ | :--------------------------- |
+| CP1: auditoría UX               | `docs/01-ux-audit.md`        |
+| CP2: navegación y tokens        | `docs/02-design-tokens.md`   |
+| CP3: tres estados de la lista   | `docs/03-states.md`          |
+| CP4: accesibilidad y responsivo | `docs/04-a11y-responsive.md` |
