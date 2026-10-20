@@ -1,6 +1,6 @@
 # Auditoría UX - Health Track
 
-Pantallas auditadas: AttendanceHistory y AttendanceForm. Ambas reciben `studentId` por la ruta y muestran el nombre del estudiante en el encabezado (en los wireframes, David Ospina). Fuente: specs y wireframes de healt-track-docs.
+Pantallas auditadas: AttendanceHistory y AttendanceForm. Ambas reciben `studentId` por la ruta y muestran el nombre del estudiante en el encabezado (en los wireframes, David Ospina). Fuente: specs y wireframes de healt-track-docs. Las capturas `before-` salen de los wireframes de healt-track-docs, porque las pantallas de asistencia no existen todavía en el código de la app del equipo (v1.0.0).
 
 | Pantalla          | Problema                                                                                                                            | Principio                           | Severidad | Arreglo propuesto                                                                                                 |
 | :---------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------- |
