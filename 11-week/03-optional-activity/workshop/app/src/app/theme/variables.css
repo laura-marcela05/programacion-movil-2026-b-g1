@@ -1,9 +1,34 @@
-/* Tema mínimo: verde institucional como color primario */
+/* Tema Health Track: tokens de diseño */
 :root {
-  --ion-color-primary: #009540;
-  --ion-color-primary-rgb: 0, 149, 64;
+  --ht-primary: #1d4ed8;
+  --ht-secondary: #0f766e;
+  --ht-success: #15803d;
+  --ht-danger: #b91c1c;
+  --ht-bg: #f8fafc;
+  --ht-surface: #ffffff;
+  --ht-text: #111827;
+  --ht-text-muted: #475569;
+
+  --ht-font-sm: 0.875rem;
+  --ht-font-md: 1rem;
+  --ht-font-lg: 1.25rem;
+
+  --ht-space-1: 0.25rem;
+  --ht-space-2: 0.5rem;
+  --ht-space-3: 1rem;
+  --ht-space-4: 1.5rem;
+  --ht-touch-min: 2.75rem;
+
+  --ion-color-primary: var(--ht-primary);
+  --ion-color-primary-rgb: 29, 78, 216;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #008338;
-  --ion-color-primary-tint: #1aa053;
+  --ion-color-primary-shade: #1a44be;
+  --ion-color-primary-tint: #3a5fdc;
+
+  --ion-color-secondary: var(--ht-secondary);
+  --ion-color-success: var(--ht-success);
+  --ion-color-danger: var(--ht-danger);
+  --ion-background-color: var(--ht-bg);
+  --ion-text-color: var(--ht-text);
 }
