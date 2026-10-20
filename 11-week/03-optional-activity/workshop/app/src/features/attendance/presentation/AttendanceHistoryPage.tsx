@@ -37,7 +37,7 @@ const AttendanceHistoryPage: React.FC = () => {
         >
           <IonRefresherContent />
         </IonRefresher>
-        <HistoryList status={status} sessions={sessions} onRetry={reload} />
+        <HistoryList status={status} sessions={sessions} studentId={studentId} onRetry={reload} />
         <div className="ion-padding">
           <IonButton routerLink={`/students/${studentId}/attendance`} style={{ minHeight: 'var(--ht-touch-min)' }}>
             Registrar sesión

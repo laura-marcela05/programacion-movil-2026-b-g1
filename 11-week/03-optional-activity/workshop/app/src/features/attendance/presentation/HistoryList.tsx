@@ -1,17 +1,19 @@
-import { IonButton, IonChip, IonItem, IonLabel, IonList, IonSkeletonText } from '@ionic/react';
+import { IonButton, IonChip, IonIcon, IonItem, IonLabel, IonList, IonSkeletonText } from '@ionic/react';
+import { barbellOutline } from 'ionicons/icons';
 import { MUSCLE_LABELS, type Session } from '../domain/Session';
 import type { HistoryStatus } from './useSessionHistory';
 
 interface Props {
   status: HistoryStatus;
   sessions: Session[];
+  studentId: string;
   onRetry: () => void;
 }
 
 const day = (iso: string) => new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' });
 const hour = (iso: string) => new Date(iso).toLocaleTimeString('es-CO', { hour: 'numeric', minute: '2-digit' });
 
-export function HistoryList({ status, sessions, onRetry }: Props) {
+export function HistoryList({ status, sessions, studentId, onRetry }: Props) {
   if (status === 'loading') {
     return (
       <IonList aria-busy="true" aria-label="Cargando historial">
@@ -38,7 +40,15 @@ export function HistoryList({ status, sessions, onRetry }: Props) {
     );
   }
   if (status === 'empty') {
-    return <p className="ion-padding ion-text-center">Todavía no hay sesiones registradas</p>;
+    return (
+      <div className="ion-padding ion-text-center">
+        <IonIcon icon={barbellOutline} aria-hidden="true" style={{ fontSize: '3rem', color: 'var(--ht-text-muted)' }} />
+        <p>Todavía no hay sesiones registradas</p>
+        <IonButton routerLink={`/students/${studentId}/attendance`} style={{ minHeight: 'var(--ht-touch-min)' }}>
+          Registrar primera sesión
+        </IonButton>
+      </div>
+    );
   }
   return (
     <IonList>

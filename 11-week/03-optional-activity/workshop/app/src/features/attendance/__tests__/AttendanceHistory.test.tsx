@@ -8,7 +8,7 @@ vi.mock('../data/attendanceService', () => ({ getSessionHistory: vi.fn() }));
 
 const Harness = () => {
   const { status, sessions, reload } = useSessionHistory('demo-student');
-  return <HistoryList status={status} sessions={sessions} onRetry={reload} />;
+  return <HistoryList status={status} sessions={sessions} studentId="demo-student" onRetry={reload} />;
 };
 
 describe('AttendanceHistory, estado de error', () => {
