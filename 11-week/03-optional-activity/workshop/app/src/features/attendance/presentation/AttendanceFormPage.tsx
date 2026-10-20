@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+  IonAlert,
   IonBackButton,
   IonButton,
   IonButtons,
@@ -14,6 +15,8 @@ import {
 } from '@ionic/react';
 import { useParams } from 'react-router-dom';
 import { hour } from './HistoryList';
+import { MUSCLE_LABELS } from '../domain/Session';
+import { CheckoutForm } from './CheckoutForm';
 import { useActiveSession } from './useActiveSession';
 
 const minutesSince = (iso: string, now: number) => Math.max(0, Math.floor((now - new Date(iso).getTime()) / 60000));
@@ -21,8 +24,12 @@ const card = { padding: 'var(--ht-space-4)', background: 'var(--ht-surface)' };
 
 const AttendanceFormPage: React.FC = () => {
   const { studentId } = useParams<{ studentId: string }>();
-  const { status, session, actionError, conflict, closeConflict, reload, checkIn } = useActiveSession(studentId);
+  const {
+    status, session, selected, done, saved, actionError, conflict, closeConflict, closeSaved,
+    reload, checkIn, openCheckout, toggleGroup, cancelCheckout, submitCheckout,
+  } = useActiveSession(studentId);
   const [now, setNow] = useState(() => Date.now());
+  const [confirmCancel, setConfirmCancel] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 30000);
@@ -30,6 +37,18 @@ const AttendanceFormPage: React.FC = () => {
   }, []);
 
   const canCheckIn = status === 'noActiveSession' || status === 'submitting';
+  const busy = status === 'submitting' || status === 'closing';
+  const onCheckout = status === 'checkoutForm' || status === 'closing';
+  const askCancel = () => (selected.length > 0 ? setConfirmCancel(true) : cancelCheckout());
+  const footer = canCheckIn
+    ? { label: actionError ? 'Reintentar' : 'Registrar entrada', run: checkIn, off: busy }
+    : status === 'active'
+      ? { label: 'Registrar salida', run: openCheckout, off: false }
+      : onCheckout
+        ? { label: actionError ? 'Reintentar' : 'Confirmar', run: submitCheckout, off: busy || selected.length === 0 }
+        : status === 'completed'
+          ? { label: 'Volver', run: undefined, off: false }
+          : null;
 
   return (
     <IonPage>
@@ -73,25 +92,57 @@ const AttendanceFormPage: React.FC = () => {
             </p>
           </div>
         )}
+        {onCheckout && (
+          <CheckoutForm
+            selected={selected}
+            disabled={busy}
+            actionError={actionError}
+            onToggle={toggleGroup}
+            onCancel={askCancel}
+          />
+        )}
+        {status === 'completed' && done && (
+          <div style={card}>
+            <p style={{ fontSize: 'var(--ht-font-lg)' }}>Sesión registrada</p>
+            <p>
+              Entrada {hour(done.checkInAt)} · Salida {hour(done.checkOutAt)}
+            </p>
+            <p>Duración: {done.durationMinutes} min</p>
+            <p>Grupos: {done.muscleGroups.map((m) => MUSCLE_LABELS[m]).join(', ')}</p>
+          </div>
+        )}
         <IonToast
           isOpen={conflict}
           message="El estado de la sesión cambió, la actualizamos"
           duration={3000}
           onDidDismiss={closeConflict}
         />
+        <IonToast isOpen={saved} message="Salida registrada" duration={3000} onDidDismiss={closeSaved} />
+        <IonAlert
+          isOpen={confirmCancel}
+          header="¿Descartar la selección?"
+          message="Se perderán los grupos musculares elegidos."
+          buttons={[
+            { text: 'Seguir editando', role: 'cancel' },
+            { text: 'Descartar', role: 'destructive', handler: cancelCheckout },
+          ]}
+          onDidDismiss={() => setConfirmCancel(false)}
+        />
       </IonContent>
-      {canCheckIn && (
+      {footer && (
         <IonFooter>
           <IonToolbar>
             <div className="ion-padding-horizontal">
               <IonButton
                 expand="block"
-                disabled={status === 'submitting'}
-                onClick={checkIn}
-                aria-label={status === 'submitting' ? 'Registrando entrada' : undefined}
+                disabled={footer.off}
+                onClick={footer.run}
+                routerLink={status === 'completed' ? `/students/${studentId}/history` : undefined}
+                routerDirection="back"
+                aria-label={busy ? 'Guardando' : undefined}
                 style={{ minHeight: 'var(--ht-touch-min)' }}
               >
-                {status === 'submitting' ? <IonSpinner name="crescent" /> : actionError ? 'Reintentar' : 'Registrar entrada'}
+                {busy ? <IonSpinner name="crescent" /> : footer.label}
               </IonButton>
             </div>
           </IonToolbar>
