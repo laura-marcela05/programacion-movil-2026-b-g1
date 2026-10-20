@@ -17,3 +17,8 @@ export const MUSCLE_LABELS: Record<MuscleGroup, string> = {
   SHOULDERS: 'Hombros',
   CORE: 'Core',
 };
+
+export type ActiveSession = Omit<Session, 'checkOutAt' | 'durationMinutes'> & {
+  checkOutAt: null;
+  durationMinutes: null;
+};
