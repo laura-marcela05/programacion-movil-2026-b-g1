@@ -1,8 +1,11 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useParams } from 'react-router-dom';
+import { HistoryList } from './HistoryList';
+import { useSessionHistory } from './useSessionHistory';
 
 const AttendanceHistoryPage: React.FC = () => {
   const { studentId } = useParams<{ studentId: string }>();
+  const { status, sessions, reload } = useSessionHistory(studentId);
   return (
     <IonPage>
       <IonHeader>
@@ -13,8 +16,8 @@ const AttendanceHistoryPage: React.FC = () => {
           <IonTitle>Historial</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
-        <p>Estudiante: {studentId}</p>
+      <IonContent>
+        <HistoryList status={status} sessions={sessions} onRetry={reload} />
         <IonButton routerLink={`/students/${studentId}/attendance`} style={{ minHeight: 'var(--ht-touch-min)' }}>
           Registrar sesión
         </IonButton>
