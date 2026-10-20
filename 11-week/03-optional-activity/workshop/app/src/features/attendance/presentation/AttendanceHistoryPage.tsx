@@ -1,4 +1,15 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonRefresher,
+  IonRefresherContent,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
 import { useParams } from 'react-router-dom';
 import { HistoryList } from './HistoryList';
 import { useSessionHistory } from './useSessionHistory';
@@ -17,10 +28,21 @@ const AttendanceHistoryPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonRefresher
+          slot="fixed"
+          onIonRefresh={async (e) => {
+            await reload();
+            e.detail.complete();
+          }}
+        >
+          <IonRefresherContent />
+        </IonRefresher>
         <HistoryList status={status} sessions={sessions} onRetry={reload} />
-        <IonButton routerLink={`/students/${studentId}/attendance`} style={{ minHeight: 'var(--ht-touch-min)' }}>
-          Registrar sesión
-        </IonButton>
+        <div className="ion-padding">
+          <IonButton routerLink={`/students/${studentId}/attendance`} style={{ minHeight: 'var(--ht-touch-min)' }}>
+            Registrar sesión
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );
