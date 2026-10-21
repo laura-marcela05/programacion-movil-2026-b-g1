@@ -18,6 +18,7 @@ import { hour } from './HistoryList';
 import { MUSCLE_LABELS } from '../domain/Session';
 import { CheckoutForm } from './CheckoutForm';
 import { useActiveSession } from './useActiveSession';
+import { useOnline } from './useOnline';
 
 const minutesSince = (iso: string, now: number) => Math.max(0, Math.floor((now - new Date(iso).getTime()) / 60000));
 const card = { padding: 'var(--ht-space-4)', background: 'var(--ht-surface)' };
@@ -30,6 +31,7 @@ const AttendanceFormPage: React.FC = () => {
   } = useActiveSession(studentId);
   const [now, setNow] = useState(() => Date.now());
   const [confirmCancel, setConfirmCancel] = useState(false);
+  const online = useOnline();
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 30000);
@@ -41,14 +43,15 @@ const AttendanceFormPage: React.FC = () => {
   const onCheckout = status === 'checkoutForm' || status === 'closing';
   const askCancel = () => (selected.length > 0 ? setConfirmCancel(true) : cancelCheckout());
   const footer = canCheckIn
-    ? { label: actionError ? 'Reintentar' : 'Registrar entrada', run: checkIn, off: busy }
+    ? { label: actionError ? 'Reintentar' : 'Registrar entrada', run: checkIn, off: busy || !online }
     : status === 'active'
       ? { label: 'Registrar salida', run: openCheckout, off: false }
       : onCheckout
-        ? { label: actionError ? 'Reintentar' : 'Confirmar', run: submitCheckout, off: busy || selected.length === 0 }
+        ? { label: actionError ? 'Reintentar' : 'Confirmar', run: submitCheckout, off: busy || selected.length === 0 || !online }
         : status === 'completed'
           ? { label: 'Volver', run: undefined, off: false }
           : null;
+  const offlineBlocked = !online && (canCheckIn || onCheckout);
 
   return (
     <IonPage>
@@ -133,6 +136,11 @@ const AttendanceFormPage: React.FC = () => {
         <IonFooter>
           <IonToolbar>
             <div className="ion-padding-horizontal">
+            {offlineBlocked && (
+                <p role="alert" style={{ color: 'var(--ht-danger)', fontSize: 'var(--ht-font-md)', margin: 0, paddingBottom: 'var(--ht-space-2)' }}>
+                  Sin conexión. Conéctate para registrar la entrada o la salida.
+                </p>
+            )}
               <IonButton
                 expand="block"
                 disabled={footer.off}
