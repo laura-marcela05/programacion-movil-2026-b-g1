@@ -54,7 +54,7 @@ export function HistoryList({ status, sessions, studentId, onRetry }: Props) {
   return (
     <IonList>
       {sessions.map((s) => (
-        <IonItem key={s.id} aria-label={sessionLabel(s)}>
+        <IonItem key={s.id} routerLink={`/students/${studentId}/history/${s.id}`} detail aria-label={sessionLabel(s)}>
           <IonLabel>
             <h2>{day(s.checkInAt)}</h2>
             <p>

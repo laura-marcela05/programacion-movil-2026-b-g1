@@ -1,0 +1,1 @@
+export const card = { padding: 'var(--ht-space-4)', background: 'var(--ht-surface)' };

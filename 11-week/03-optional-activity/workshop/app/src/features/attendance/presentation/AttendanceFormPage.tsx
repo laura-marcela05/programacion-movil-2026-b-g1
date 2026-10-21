@@ -19,9 +19,9 @@ import { MUSCLE_LABELS } from '../domain/Session';
 import { CheckoutForm } from './CheckoutForm';
 import { useActiveSession } from './useActiveSession';
 import { useOnline } from './useOnline';
+import { card } from './styles';
 
 const minutesSince = (iso: string, now: number) => Math.max(0, Math.floor((now - new Date(iso).getTime()) / 60000));
-const card = { padding: 'var(--ht-space-4)', background: 'var(--ht-surface)' };
 
 const AttendanceFormPage: React.FC = () => {
   const { studentId } = useParams<{ studentId: string }>();

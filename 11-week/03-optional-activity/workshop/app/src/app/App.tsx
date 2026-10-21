@@ -10,6 +10,7 @@ import '@ionic/react/css/text-alignment.css';
 import './theme/variables.css';
 import AttendanceHistoryPage from '../features/attendance/presentation/AttendanceHistoryPage';
 import AttendanceFormPage from '../features/attendance/presentation/AttendanceFormPage';
+import SessionDetailPage from '../features/attendance/presentation/SessionDetailPage';
 
 setupIonicReact();
 
@@ -18,6 +19,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/students/:studentId/history" component={AttendanceHistoryPage} />
+        <Route exact path="/students/:studentId/history/:sessionId" component={SessionDetailPage} />
         <Route exact path="/students/:studentId/attendance" component={AttendanceFormPage} />
         <Redirect exact from="/" to="/students/demo-student/history" />
       </IonRouterOutlet>
