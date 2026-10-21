@@ -79,3 +79,11 @@ export async function registerCheckOut(sessionId: string, muscleGroups: MuscleGr
   activeSessions.delete(active.studentId);
   return { ...active, checkOutAt: checkOutAt.toISOString(), durationMinutes, muscleGroups };
 }
+
+export async function getSessionDetail(studentId: string, sessionId: string): Promise<Session> {
+  await delay();
+  if (readSimulation() === 'error') throw new Error('SIMULATED_FAILURE');
+  const found = samples(studentId).find((s) => s.id === sessionId);
+  if (!found) throw new AttendanceApiError(404, 'SESSION_NOT_FOUND');
+  return found;
+}
