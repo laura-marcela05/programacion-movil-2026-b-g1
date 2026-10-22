@@ -52,7 +52,7 @@ El servicio simulado solo implementa el `422` de la selección vacía. Los otros
 | Sin sesión activa | "Sin sesión activa" y botón "Registrar entrada" |
 | Registrando entrada o guardando salida | Botón deshabilitado con spinner, para evitar un doble envío (un repetido recibiría `409`, D-08) |
 | Sesión activa | Hora de entrada y tiempo transcurrido, que se actualiza cada 30 s; botón "Registrar salida" |
-| Formulario de salida | Lista de grupos; mensaje de validación y Confirmar deshabilitado hasta marcar uno |
+| Formulario de salida | Lista de grupos; mensaje de validación y Confirmar deshabilitado hasta marcar uno; texto de ayuda "Toca un grupo de nuevo para quitarlo" y botón "Limpiar selección" cuando hay grupos marcados (agregados tras la prueba de usabilidad) |
 | Cancelar con grupos marcados | `IonAlert` "¿Descartar la selección?" (acción destructiva: se pierde la selección); sin selección vuelve directo a la sesión activa |
 | Éxito | `IonToast` "Salida registrada" y resumen con entrada, salida, duración y grupos; el botón "Volver" lleva al historial |
 | Falla del servidor al confirmar | Mensaje en línea, la selección se conserva y el botón pasa a "Reintentar" |

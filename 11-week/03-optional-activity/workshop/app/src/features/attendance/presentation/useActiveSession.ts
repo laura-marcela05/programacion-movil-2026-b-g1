@@ -57,7 +57,7 @@ export function useActiveSession(studentId: string) {
 
   const toggleGroup = (group: MuscleGroup) =>
     setSelected((prev) => (prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]));
-
+  const clearSelection = () => setSelected([]);
   const cancelCheckout = () => {
     setSelected([]);
     setActionError(false);
@@ -87,6 +87,6 @@ export function useActiveSession(studentId: string) {
     status, session, selected, done, saved, actionError, conflict,
     closeConflict: () => setConflict(false),
     closeSaved: () => setSaved(false),
-    reload, checkIn, openCheckout, toggleGroup, cancelCheckout, submitCheckout,
+        reload, checkIn, openCheckout, toggleGroup, clearSelection, cancelCheckout, submitCheckout,
   };
 }

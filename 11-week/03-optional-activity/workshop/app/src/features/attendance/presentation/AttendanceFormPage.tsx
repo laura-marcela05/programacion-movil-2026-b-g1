@@ -27,7 +27,7 @@ const AttendanceFormPage: React.FC = () => {
   const { studentId } = useParams<{ studentId: string }>();
   const {
     status, session, selected, done, saved, actionError, conflict, closeConflict, closeSaved,
-    reload, checkIn, openCheckout, toggleGroup, cancelCheckout, submitCheckout,
+    reload, checkIn, openCheckout, toggleGroup, clearSelection, cancelCheckout, submitCheckout,
   } = useActiveSession(studentId);
   const [now, setNow] = useState(() => Date.now());
   const [confirmCancel, setConfirmCancel] = useState(false);
@@ -101,6 +101,7 @@ const AttendanceFormPage: React.FC = () => {
             disabled={busy}
             actionError={actionError}
             onToggle={toggleGroup}
+            onClear={clearSelection}
             onCancel={askCancel}
           />
         )}
@@ -136,11 +137,11 @@ const AttendanceFormPage: React.FC = () => {
         <IonFooter>
           <IonToolbar>
             <div className="ion-padding-horizontal">
-            {offlineBlocked && (
+              {offlineBlocked && (
                 <p role="alert" style={{ color: 'var(--ht-danger)', fontSize: 'var(--ht-font-md)', margin: 0, paddingBottom: 'var(--ht-space-2)' }}>
                   Sin conexión. Conéctate para registrar la entrada o la salida.
                 </p>
-            )}
+              )}
               <IonButton
                 expand="block"
                 disabled={footer.off}

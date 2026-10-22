@@ -44,7 +44,11 @@ También observé que, al buscar la duración, las dos personas empezaron por la
 
 ## Problema elegido para corregir
 
-El problema A. Afectó a las dos personas y fue la tarea que una de ellas no pudo completar. La corrección se registra en el commit siguiente.
+El problema A. Afectó a las dos personas y fue la tarea que una de ellas no pudo completar.
+
+## Corrección aplicada
+
+En el formulario de salida agregué un texto fijo bajo el título ("Toca un grupo de nuevo para quitarlo.") y un botón "Limpiar selección", que aparece solo cuando hay grupos marcados y los desmarca todos sin descartar la sesión. Cancelar sigue igual. No repetí la prueba con las mismas personas, y solo comprobé a mano que el texto y el botón funcionan.
 
 ## Otras sugerencias de las personas
 

@@ -6,17 +6,21 @@ interface Props {
   disabled: boolean;
   actionError: boolean;
   onToggle: (group: MuscleGroup) => void;
+  onClear: () => void;
   onCancel: () => void;
 }
 
 const groups = Object.keys(MUSCLE_LABELS) as MuscleGroup[];
 
-export function CheckoutForm({ selected, disabled, actionError, onToggle, onCancel }: Props) {
+export function CheckoutForm({ selected, disabled, actionError, onToggle, onClear, onCancel }: Props) {
   return (
     <fieldset style={{ border: 0, margin: 0, padding: 0 }}>
       <legend style={{ fontSize: 'var(--ht-font-lg)', marginBottom: 'var(--ht-space-2)' }}>
         Grupos musculares trabajados
       </legend>
+      <p style={{ margin: '0 0 var(--ht-space-2)', fontSize: 'var(--ht-font-md)', color: 'var(--ht-text-muted)' }}>
+        Toca un grupo de nuevo para quitarlo.
+      </p>
       <IonList>
         {groups.map((g) => (
           <IonItem key={g}>
@@ -35,6 +39,11 @@ export function CheckoutForm({ selected, disabled, actionError, onToggle, onCanc
         <p role="alert" style={{ color: 'var(--ht-danger)' }}>
           No se pudo registrar la salida. Tu selección se conservó, intenta de nuevo.
         </p>
+      )}
+      {selected.length > 0 && (
+        <IonButton fill="outline" disabled={disabled} onClick={onClear} style={{ minHeight: 'var(--ht-touch-min)' }}>
+          Limpiar selección
+        </IonButton>
       )}
       <IonButton fill="clear" disabled={disabled} onClick={onCancel} style={{ minHeight: 'var(--ht-touch-min)' }}>
         Cancelar
