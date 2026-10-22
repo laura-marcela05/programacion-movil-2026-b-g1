@@ -35,3 +35,5 @@ Formulario a 360 px:
 Formulario a 768 px:
 
 ![Formulario 768](img/after-form-768.png)
+
+Nota: las capturas `after-form-360.png` y `after-form-768.png` se tomaron con el formulario en su estado inicial (placeholder "Sin sesión activa"), antes de construir el formulario completo del CP6. El formulario actual está documentado en `06-forms.md`.
