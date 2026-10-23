@@ -39,3 +39,7 @@ Para ver cada estado de la lista agrego un parámetro a la URL: `?sim=slow` (car
 | CP2: navegación y tokens        | `docs/02-design-tokens.md`   |
 | CP3: tres estados de la lista   | `docs/03-states.md`          |
 | CP4: accesibilidad y responsivo | `docs/04-a11y-responsive.md` |
+| CP6: formulario con validación  | `docs/06-forms.md`           |
+| CP7: detalle y flujo            | `docs/07-navigation-flow.md` |
+| CP8: prueba de usabilidad       | `docs/08-usability-test.md`  |
+| CP9: antes y después, historias | `docs/09-before-after.md`    |
