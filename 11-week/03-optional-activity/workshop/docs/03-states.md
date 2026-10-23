@@ -17,13 +17,13 @@ Se abre la ruta `/students/demo-student/history` y se agrega el parámetro `sim`
 
 Esqueleto (`IonSkeletonText`) con la forma real de cada fila: fecha, entrada y salida, y etiquetas de músculos. Mientras carga, la lista se marca como ocupada para los lectores de pantalla.
 
-![Estado cargando](img/after-history-loading.png)
+![Estado cargando](img/after-history-data.png)
 
 ## Con datos
 
 Cada tarjeta muestra la fecha, la hora de entrada y de salida con la duración en minutos (`durationMinutes`), y los grupos musculares (`muscleGroups`) como etiquetas con su nombre en español.
 
-![Estado con datos](img/after-history-data.png)
+![Estado con datos](img/after-history-loading.png)
 
 ## Error
 
