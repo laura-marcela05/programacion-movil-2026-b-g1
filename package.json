@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@aparajita/capacitor-secure-storage": "^8.0.1",
+    "@capacitor/network": "^8.0.1"
+  }
+}

@@ -1,0 +1,16 @@
+.foto-comida {
+  margin: 12px 0;
+}
+
+.foto-comida__boton {
+  min-height: 3.5rem;
+}
+
+.foto-comida__imagen {
+  display: block;
+  width: 100%;
+  max-height: 16rem;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
