@@ -1,0 +1,7 @@
+.idea/
+desktop.ini
+app/android/app/release/
+*.jks
+*.keystore
+*.aab
+*.apk
